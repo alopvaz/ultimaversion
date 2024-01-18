@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-buscar {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.ant-table-pagination.ant-pagination {
+    justify-content: center;
+}
+
+.ant-card {
+    border: none !important;
+}
+
+/* Oculta todos los checkbox por defecto */
+.ant-table-row .ant-checkbox-wrapper,
+.ant-table-thead .ant-checkbox-wrapper {
+    visibility: hidden;
+}
+
+/* Muestra el checkbox cuando se pasa el cursor sobre la fila */
+.ant-table-row:hover .ant-checkbox-wrapper,
+.ant-table-thead:hover .ant-checkbox-wrapper {
+    visibility: visible;
+}
+
+.my-custom-class {
+    background-color: blue !important;
+}
+
+.selected-row {
+    background-color: blue;
+  }
+
+  /* Muestra el checkbox cuando se pasa el cursor sobre la fila o cuando la fila está seleccionada */
+.ant-table-row:hover .ant-checkbox-wrapper,
+.ant-table-thead:hover .ant-checkbox-wrapper,
+.selected-row .ant-checkbox-wrapper {
+    visibility: visible;
+}
+
+.mi-modal .ant-modal {
+    width: 300px; /* Cambia esto al ancho que desees */
+    height: 200px; /* Cambia esto a la altura que desees */
+    background-color: #f0f0f0; /* Cambia esto al color de fondo que desees */
+  }
+  
+  .mi-modal .ant-modal-close {
+    display: none; /* Esto ocultará el botón de cierre del modal */
+  }
+  
+  .mi-modal .ant-modal-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .ant-table-row-selected {
+    background-color: inherit !important;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0; /* Esto moverá el div del modal a la izquierda */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    pointer-events: none;
+    padding: 20px; /* Esto añade un poco de espacio a la izquierda del div del modal */
+    margin-left: 140px;
+}
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    height: 2px;
+    pointer-events: auto;
+    border: 1px solid rgb(228, 228, 228);
+  }
+  
+  .icon-button {
+    border: none; /* Esto quita los bordes de los botones */
+    margin-left:10px;
+  }
+  .ant-table-selection-column .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-table-selection-column .ant-checkbox-checked .ant-checkbox-inner {
+  visibility: visible;
+}
+
+.new-row .ant-checkbox-wrapper {
+    display: none;
+}
+
+.boton {
+  border: none;
+}
+
+.ant-table-tbody .ant-table-selection-column .ant-checkbox-wrapper {
+  visibility: hidden;
+}
+
+.ant-table-tbody .ant-table-selection-column:hover .ant-checkbox-wrapper {
+  visibility: visible;
+}
+
+.ant-table-thead .ant-table-selection-column .ant-checkbox-wrapper {
+  visibility: hidden;
+}
+
+.ant-table-thead .ant-table-selection-column:hover .ant-checkbox-wrapper {
+  visibility: visible;
+}
+
+.ant-table-cell {
+  border-right: 1px solid #f0f0f0;
+}
+
+.ant-table-cell:last-child {
+  border-right: none;
+}
+
+.ant-table-cell:first-child {
+  border-right: none;
+}
+
+.card-title {
+  font-size: 20px;
+  color: #1c1c1c;
+
+}
+
+.ant-card-head {
+  padding-left: 0 !important; /* Ajusta este valor a tu gusto */
+  
+}
+
+
+.ant-pagination-item {
+  color: #1c1c1c !important; /* Cambia esto al color que desees */
+}
+
+.ant-pagination-item a {
+  color: #1c1c1c !important; /* Cambia esto al color que desees */
+}
+
+.ant-pagination-item-active {
+  border-color: #1c1c1c !important; /* Cambia esto al color que desees */
+}
+
+.ant-pagination-item:hover {
+  border-color: blue !important; /* Cambia esto al color que desees */
+}
+
+.ant-pagination-item:hover a {
+  color: blue;/* Cambia esto al color que desees */
+}
+
+.ant-table-column-sort {
+  background: transparent;
+}
+
+
+/* Evitar que la columna pierda el fondo al ordenar */
+.ant-table-thead .ant-table-column-sort {
+  background: transparent;
+}
+
+/* Estilo adicional para la columna ordenada */
+.ant-table-thead .ant-table-column-sort.ant-table-column-sort-active {
+  background: transparent;
+}
+
+/* CSS */
+.table-container {
+  position: relative;
+  min-height: calc(8 * 50px); /* Ajusta este valor según la altura de tus filas */
+}
+
+.pagination-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

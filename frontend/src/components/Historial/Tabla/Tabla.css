@@ -1,0 +1,96 @@
+.main {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    height: 100vh;
+    background-color: aliceblue;
+  }
+  
+  .container {
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 1200px;
+    height: 90%;
+    max-height: 90vh; 
+    overflow: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    padding-bottom: 50px;
+  }
+  
+  .card-title {
+    height: 40px;
+    margin: 0;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin: 0;
+    flex: 0 0 auto;
+    overflow: visible;
+    align-items: center; 
+  }
+  
+  .left-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  .right-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+
+  }
+  
+  .table {
+    flex: 1 0 auto;
+    overflow: auto;
+    margin: 0;
+    width: 100%; /* Añade esto para hacer que la tabla ocupe todo el espacio horizontal */
+    border: none; /* Añade esto para quitar los bordes de la tabla */
+  }
+  .pagination {
+    position: sticky;
+    bottom: 0;
+  }
+  
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 40px);
+    overflow: auto;
+  }
+  
+  .table-container .table-style {
+    flex: 1 0 auto;
+  }
+  
+  .table-container .ant-pagination {
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
+  }
+  
+  .table {
+    height: 50%;
+  }
+  
+  .table .ant-table-cell {
+    line-height: 0.1;
+    overflow: auto; 
+  }
+
+  .borderless-input {
+    border: none;
+  }

@@ -1,0 +1,116 @@
+.fondo-negro {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.letra {
+    opacity: 0;
+    font-size: 130px;
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+    }
+}
+
+.animacion-letra-0, .animacion-letra-1, .animacion-letra-2, .animacion-letra-3, .animacion-letra-4 {
+    animation: aparecer 0.5s ease forwards;
+    color: white;
+}
+
+.animacion-letra-0 {
+    animation-delay: 0.5s;
+}
+
+.animacion-letra-1 {
+    animation-delay: 1s;
+}
+
+.animacion-letra-2 {
+    animation-delay: 1.5s;
+}
+
+.animacion-letra-3 {
+    animation-delay: 2s;
+}
+
+.animacion-letra-4 {
+    animation-delay: 2.5s;
+}
+
+.animacion-letra-5, .animacion-letra-6, .animacion-letra-7, .animacion-letra-8, .animacion-letra-9, .animacion-letra-10 {
+    animation: aparecer 0.5s ease forwards;
+    color: blue;
+}
+
+.animacion-letra-5 {
+    animation-delay: 3s;
+}
+
+.animacion-letra-6 {
+    animation-delay: 3.5s;
+}
+
+.animacion-letra-7 {
+    animation-delay: 4s;
+}
+
+.animacion-letra-8 {
+    animation-delay: 4.5s;
+}
+
+.animacion-letra-9 {
+    animation-delay: 5s;
+}
+
+.animacion-letra-10 {
+    animation-delay: 5.5s;
+}
+
+/* ... tus otros estilos ... */
+
+.nueva-sesion {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .campo-texto {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .campo-texto input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+  }
+  
+  .campo-texto label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  
+  .campo-texto input:valid + label,
+  .campo-texto input:focus + label {
+    top: -20px;
+    font-size: 12px;
+  }
+  
+  .boton-azul {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
