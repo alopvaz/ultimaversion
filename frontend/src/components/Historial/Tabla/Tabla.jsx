@@ -5,31 +5,27 @@ import './Tabla.css';
 
 const Tabla = () => {
 
-
-
-
   const [inputVisible, setInputVisible] = useState(false);
   const [form] = Form.useForm();
   const [data, setData] = useState([
-    { key: '1', name: 'John Doe', age: 30, address: 'New York' },
-    { key: '2', name: 'John Doe', age: 30, address: 'New York' },
-    { key: '3', name: 'John Doe', age: 30, address: 'New York' },
-    { key: '4', name: 'John Doe', age: 30, address: 'New York' },
+    { key: '1', name: 'John Doe', age: 30, address: 'New York', date: '2022-01-01' },
+    { key: '2', name: 'John Doe', age: 30, address: 'New York', date: '2022-02-01' },
+    { key: '3', name: 'John Doe', age: 30, address: 'New York', date: '2022-03-01' },
+    { key: '4', name: 'John Doe', age: 30, address: 'New York', date: '2022-04-01' },
   ]);
-  const [editingKey, setEditingKey] = useState('');
+  const [editingKey, setEditingKey] = useState(''); // key of the row being edited
+  const [editingField, setEditingField] = useState(''); // field of the row being edite
+  const isEditing = (record, field) => record.key === editingKey && field === editingField;
 
   const handleClick = () => {
     setInputVisible(!inputVisible);
   };
 
-  const isEditing = (record) => record.key === editingKey;
 
-  const edit = (record) => {
-    form.setFieldsValue(record);
+  const edit = (record, field) => {
+    form.setFieldsValue({ ...record });
     setEditingKey(record.key);
-  };
-  const cancel = () => {
-    setEditingKey('');
+    setEditingField(field);
   };
 
   const save = async (key) => {
@@ -37,18 +33,18 @@ const Tabla = () => {
       const row = await form.validateFields();
       const newData = [...data];
       const index = newData.findIndex((item) => key === item.key);
+  
       if (index > -1) {
         const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
+        newData.splice(index, 1, { ...item, ...row });
         setData(newData);
         setEditingKey('');
+        setEditingField('');
       } else {
         newData.push(row);
         setData(newData);
         setEditingKey('');
+        setEditingField('');
       }
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
@@ -86,17 +82,60 @@ const Tabla = () => {
       sorter: (a, b) => a.name.localeCompare(b.name),
       sortDirections: ['descend', 'ascend'],
       render: (text, record) => {
+        const editable = isEditing(record, 'name');
+        return (
+          <div style={{ position: 'relative' }}>
+            {editable ? (
+              <Form.Item
+                name="name"
+                style={{ margin: 0 }}
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input a name!',
+                  },
+                ]}
+              >
+                <Input
+                  style={{
+                    border: 'none', // Remove border
+                    boxShadow: 'none', // Remove shadow
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute',
+                    zIndex: 1,
+                    backgroundColor: 'transparent', // Make background transparent
+                    margin: 0, // Remove margin
+                    padding: 0, // Remove padding
+                  }}
+                  autoFocus
+                  onBlur={() => save(record.key)}
+                  onPressEnter={(e) => handleKeyPress(e, record.key)}
+                />
+              </Form.Item>
+            ) : (
+              <span onClick={() => edit(record, 'name')}>{text}</span>
+            )}
+          </div>
+        );
+      },
+    },
+    {
+      title: 'Fecha',
+      dataIndex: 'date',
+      key: 'date',
+      sorter: (a, b) => new Date(a.date) - new Date(b.date),
+      sortDirections: ['descend', 'ascend'],
+      render: (text, record) => {
         const editable = isEditing(record);
         return editable ? (
           <Form.Item
-            name="name"
-            style={{
-              margin: 0,
-            }}
+            name="date"
+            style={{ margin: 0 }}
             rules={[
               {
                 required: true,
-                message: 'Please input a name!',
+                message: 'Please input a date!',
               },
             ]}
           >
@@ -106,29 +145,20 @@ const Tabla = () => {
             />
           </Form.Item>
         ) : (
-          <span>{text}</span>
+          <span onClick={() => edit(record)}>{text}</span>
         );
       },
     },
     {
       title: 'acciones',
       key: 'expand',
-      render: (text, record) => {
-        const editable = isEditing(record);
-        return (
-          <span>
-            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}       style={{ marginRight: '10px' }}
->
-              Editar 
-            </Typography.Link>
-            {" "} {" "}
-
-            <Typography.Link onClick={() => handleDelete(record.key)}>
-              Eliminar
-            </Typography.Link>
-          </span>
-        );
-      },
+      render: (text, record) => (
+        <span>
+          <Typography.Link onClick={() => handleDelete(record.key)}>
+            Eliminar
+          </Typography.Link>
+        </span>
+      ),
     },
   ];
 
@@ -160,22 +190,22 @@ const Tabla = () => {
               </div>
             </Col>
             <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
-  <div className="right-actions">
-    <Button onClick={handleClick}>
-      <SearchOutlined />
-    </Button>
-    {inputVisible && (
-      <Input
-        className="input-visible"
-        placeholder="Buscar..."
-        value={searchValue}
-        onChange={handleSearchChange}
-      />
-    )}
-  </div>
-</Col>
+              <div className="right-actions">
+                <Button onClick={handleClick}>
+                  <SearchOutlined />
+                </Button>
+                {inputVisible && (
+                  <Input
+                    className="input-visible"
+                    placeholder="Buscar..."
+                    value={searchValue}
+                    onChange={handleSearchChange}
+                  />
+                )}
+              </div>
+            </Col>
           </Row>
-        </div> 
+        </div>
 
         <div className="table">
           <Form form={form} component={false}>
