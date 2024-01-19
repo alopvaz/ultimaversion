@@ -1,7 +1,7 @@
 import { useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Layout } from 'antd';
-import Login from './components/Login/Login';
+import Login from './components/Login/Login2';
 import Sesion from './components/Sesion/Sesion';
 import Historial from './components/Historial/Historial';
 import Principal from './components/Principal/Principal';

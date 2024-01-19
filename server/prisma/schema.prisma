@@ -1,0 +1,58 @@
+//Archivo de configuracion de Prisma
+
+//Conexión a mysql usando la URL de conexión especificada en DATABASE_URL con valor en el archivo .env
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+//Genera un cliente Prisma en JavaScript que proporciona metodos para acceder a la base de datos
+generator client {
+  provider = "prisma-client-js"
+}
+
+//Definicion del modelo
+
+// Participante con atributos: id, nombre, usuario, contraseña y rol y relacion 1:N con votaciones
+model Participantes {
+  id Int @id @default(autoincrement())
+  nombre String
+  usuario String
+  contrasena String
+  rol Role
+  votaciones Votaciones[]
+}
+  
+//Enumerado para que rol pueda ser user o admin
+enum Role {
+  user
+  admin
+}
+
+// Sesiones con atributos: id, nombre, fecha, tareas y relacion 1:N con tareas
+model Sesiones {
+  id Int @id @default(autoincrement())
+  nombre String
+  fecha DateTime
+  tareas Tareas[]
+}
+
+// Tareas con atributos id, nombre, estimacion, sesion y relacion N:1 con sesiones y N:M votaciones
+model Tareas {
+  id Int @id @default(autoincrement())
+  nombre String
+  estimacion Int
+  sesionId Int
+  sesion Sesiones @relation(fields: [sesionId], references: [id])
+  votaciones Votaciones[]
+}
+
+// Votaciones con atributos participante, tarea, votacion y relacion N:M con participantes y tareas
+model Votaciones {
+  participanteId Int
+  tareaId Int
+  votacion Int
+  participante Participantes @relation(fields: [participanteId], references: [id])
+  tarea Tareas @relation(fields: [tareaId], references: [id])
+  @@id([participanteId, tareaId])
+}

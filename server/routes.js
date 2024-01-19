@@ -24,6 +24,7 @@ router.post('/login', function(req, res) {
     });
 });
 
+//MÉTODO ------------------->>>>>> 
 router.get('/rol', function(req, res) {
     if (req.session.role) {
         res.send(req.session.role) // Envía el rol del usuario
@@ -31,7 +32,7 @@ router.get('/rol', function(req, res) {
         res.status(401).send('No autorizado')
     }
 });
-
+// este método se ejecuta cuando se hace una solicitud get a '/nombre'
 router.get('/nombre', function(req, res) {
     if (req.session.nombre) {
         res.send(req.session.nombre) // Envía el nombre del usuario
@@ -40,7 +41,7 @@ router.get('/nombre', function(req, res) {
         res.status(401).send('No autorizado')
     }
 });
-
+// este método se ejecuta cuando se hace una solicitud get a '/id'
 router.get('/id', function(req, res) {
     if (req.session.userId) {
         res.send(req.session.userId.toString()) // Envía el ID del usuario
